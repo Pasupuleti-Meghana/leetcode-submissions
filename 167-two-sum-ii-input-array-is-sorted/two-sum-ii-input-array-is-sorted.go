@@ -1,12 +1,17 @@
 func twoSum(numbers []int, target int) []int {
-    mp := make(map[int]int)
-
-    for i,num := range numbers {
-        needed := target - num
-        if ind, found := mp[needed]; found {
-            return []int{ind+1,i+1}
+    length := len(numbers)
+    left := 0
+    right := length - 1
+    
+    for left < right {
+        sum := numbers[left] + numbers[right]
+        if sum == target {
+            return []int{left+1, right+1}
+        } else if sum > target {
+            right--
+        } else {
+            left++
         }
-        mp[num] = i
     }
     return []int{}
 }
